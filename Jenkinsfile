@@ -8,14 +8,14 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t moheesahmed-blip/laravel-app:latest .'
+                sh 'docker build -t mohees/laravel-app:latest .'
             }
         }
         stage('Push to Docker Hub') {
             steps {
                 withCredentials([string(credentialsId: 'dockerhub-token', variable: 'DOCKER_PASSWORD')]) {
-                    sh 'echo $DOCKER_PASSWORD | docker login -u "moheesahmed-blip" --password-stdin'
-                    sh 'docker push moheesahmed-blip/laravel-app:latest'
+                    sh 'echo $DOCKER_PASSWORD | docker login -u "mohees" --password-stdin'
+                    sh 'docker push mohees/laravel-app:latest'
                 }
             }
         }
